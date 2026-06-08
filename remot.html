@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Controller | Pantau HP Target</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #0a0f1a;
+            font-family: monospace;
+            color: #0f0;
+            padding: 20px;
+        }
+        .container { max-width: 800px; margin: auto; }
+        h1 { text-align: center; margin-bottom: 10px; }
+        .card {
+            background: #000000aa;
+            border: 1px solid #0f0;
+            border-radius: 20px;
+            padding: 18px;
+            margin-bottom: 20px;
+        }
+        video {
+            width: 100%;
+            background: #000;
+            border-radius: 12px;
+            transform: scaleX(-1);
+        }
+        button {
+            background: #0f0;
+            color: #000;
+            border: none;
+            padding: 10px 16px;
+            margin: 5px;
+            border-radius: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        input {
+            background: #000;
+            border: 1px solid #0f0;
+            color: #0f0;
+            padding: 10px;
+            width: 100%;
+            margin: 10px 0;
+            border-radius: 40px;
+            text-align: center;
+        }
+        .log {
+            background: #000;
+            padding: 8px;
+            height: 150px;
+            overflow-y: auto;
+            font-size: 12px;
+        }
+        .flex { display: flex; gap: 10px; flex-wrap: wrap; }
+        .status { background: #0f0; color: #000; padding: 4px 12px; border-radius: 20px; display: inline-block; }
+        .location { font-family: monospace; margin-top: 5px; }
+    </style>
+    <script src="https://unpkg.com/peerjs@1.4.7/dist/peerjs.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <h1>🎮 CONTROLLER</h1>
+    <div class="card">
+        <div class="flex" style="justify-content: space-between;">
+            <span class="status" id="connStatus">⛔ Terputus</span>
+            <span id="targetInfo"></span>
+        </div>
+        <input type="text" id="targetCode" placeholder="Masukkan kode target (6 digit)" maxlength="6">
+        <button id="connectBtn">🔗 HUBUNGKAN</button>
+    </div>
+
+    <div class="card">
+        <h3>📷 Kamera Target</h3>
+        <video id="remoteVideo" autoplay playsinline muted></video>
+        <div class="flex">
+            <button id="flashBtn">💡 FLASH ON/OFF</button>
+            <button id="locBtn">📍 LACAK LOKASI</button>
+            <button id="sosBtn">🚨 KIRIM SOS</button>
+        </div>
+        <div id="locationResult" style="margin-top: 10px; font-size: 12px;"></div>
+    </div>
+
+    <div class="card">
+        <h3>📡 Log Activity</h3>
+        <div class="log" id="log"></div>
+    </div>
+</div>
+
+<script src="controller.js"></script>
+</body>
+</html>
